@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <style>
+        table {
+            width: 500px;
+        }
+        table, th, td {
+            border: 1px solid;
+            border-collapse: collapse;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Username</th>
+            <th>Password</th>
+        </tr>
+        <tr th:each="user, iterStat : ${users}">
+            <td th:text="${iterStat.index + 1}"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.password}"></td>
+            <td><a th:href = "@{/users/edit/{id}(id = ${user.id})}">Edit</a></td>
+            <td><a th:href = "@{/users/delete/{id}(id = ${user.id})}">Delete</a></td>
+        </tr>
+    </table>
+    <br>
+    <a href="/home"><button>Home</button></a>
+    <a href="/users/add"><button>Add</button></a>
+</body>
+</html>
